@@ -22,7 +22,7 @@ public class PlayInt : MonoBehaviour
             {
                 randNum = Random.Range(1, 101);
 
-                if (randNum < 16 ) 
+                if (randNum < 15 ) 
                 {
 
                     choice = true;
