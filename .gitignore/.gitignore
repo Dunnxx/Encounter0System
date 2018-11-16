@@ -8,7 +8,6 @@ public class PlayInt : MonoBehaviour
 
   public GameObject currentIntObj = null;
 	public InteractionObject currentInterObjScript = null;
-	public Inventory inventory;
 	public int randNum;
     // to leave the and start the random encounter
     public bool choice = false;
