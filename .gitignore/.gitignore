@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PlayInt : MonoBehaviour
+{
+
+  public GameObject currentIntObj = null;
+	public InteractionObject currentInterObjScript = null;
+	public Inventory inventory;
+	public int randNum;
+    // to leave the and start the random encounter
+    public bool choice = false;
+
+
+    // random encounter for ~15% brings to
+	public void Update ()
+	{
+		if (currentIntObj) {
+            if (currentInterObjScript.randomEncounter && choice == false)
+            {
+                randNum = Random.Range(1, 101);
+
+                if (randNum < 16 ) 
+                {
+
+                    choice = true;
+                    // put scene for encounter here instead of Debug or with Debug
+                    Debug.Log(randNum + " encounter scene");
+                    
+                   
+                }
+                else
+                {
+                    choice = true;
+                    Debug.Log(randNum);
+                }
+            }
+            
+		if (currentIntObj = null)
+            {
+                choice = false;
+            }
+		}
+	}
+    // to trigger the object to see if it will interact 
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag ("InterObj")) {
+			Debug.Log (other.name);
+			currentIntObj = other.gameObject;
+			currentInterObjScript = currentIntObj.GetComponent<InteractionObject> ();
+		}
+	}
+    // to see if the player is off the object 
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if(other.CompareTag("InterObj")){
+            // to reset the choice to make sure you can retrigger
+                choice = false;
+                currentIntObj = null;
+
+			}
+	}
+}				
